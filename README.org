@@ -1,0 +1,4 @@
+#+OPTIONS: \n:t num:nil timestamp:nil
+
+* Mi configuración para AwesomeWM
+<En progreso...>
