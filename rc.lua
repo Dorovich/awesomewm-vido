@@ -96,11 +96,11 @@ modkey = "Mod4"
 awful.layout.layouts = {
    awful.layout.suit.max,
    awful.layout.suit.tile,
-   awful.layout.suit.tile.left,
-   awful.layout.suit.fair,
    awful.layout.suit.floating,
+   -- awful.layout.suit.tile.left,
    -- awful.layout.suit.tile.bottom,
    -- awful.layout.suit.tile.top,
+   -- awful.layout.suit.fair,
    -- awful.layout.suit.fair.horizontal,
    -- awful.layout.suit.spiral,
    -- awful.layout.suit.spiral.dwindle,
@@ -593,7 +593,7 @@ awful.rules.rules = {
                     keys = clientkeys,
                     buttons = clientbuttons,
                     screen = awful.screen.preferred,
-                    placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+                    placement = awful.placement.no_overlap+awful.placement.no_offscreen+awful.placement.centered,
      }
    },
 
@@ -611,6 +611,7 @@ awful.rules.rules = {
            "Kruler",
            "MessageWin",  -- kalarm.
            "Sxiv",
+           "mpv",
            "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
            "Wpa_gui",
            "veromix",
