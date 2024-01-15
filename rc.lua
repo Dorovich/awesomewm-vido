@@ -61,6 +61,14 @@ if hostname == "Ness-net" then
    is_laptop = true
 elseif hostname == "raspinet" then
    is_raspi = true
+else
+   is_laptop = false
+   is_raspi = false
+end
+
+local function do_if(boolean, result)
+   if boolean then return result
+   else return nil end
 end
 
 -- {{{ Variable definitions
@@ -330,18 +338,25 @@ globalkeys = gears.table.join(
       function () awful.spawn(terminal) end,
       {description = "open a terminal", group = "launcher"}),
 
-   if not is_raspi then
+   awful.key({ modkey }, "a",
+      function () awful.spawn("pcmanfm") end,
+      {description = "open a file manager", group = "launcher"}),
+
+   do_if(not is_raspi, 
       awful.key({ modkey }, "r",
          function() awful.spawn(scriptmanager) end,
-         {description = "script selector", group = "launcher"}),
-   end
+         {description = "script selector", group = "launcher"})
+   ),
    
    awful.key({ modkey }, "b",
       function ()
+         local browser, browser_class
          if is_raspi then
-            local browser, browser_class = "chromium-browser", "Chromium-browser"
+            browser = "chromium-browser"
+            browser_class = "Chromium-browser"
          else
-            local browser, browser_class = "firefox", "firefox"
+            browser = "firefox"
+            browser_class = browser
          end
          local matcher = function (c)
             return awful.rules.match(c, {class = browser_class})
@@ -354,7 +369,7 @@ globalkeys = gears.table.join(
       function () awful.spawn("dmenu_run -h 12 -c -g 3 -l 10") end,
       {description = "run dmenu", group = "launcher"}),
 
-   if not is_raspi then
+   do_if(not is_raspi, 
       awful.key({ modkey }, "e",
          function ()
             local matcher = function (c)
@@ -362,8 +377,8 @@ globalkeys = gears.table.join(
             end
             awful.client.run_or_raise("emacsclient -c -a 'emacs'", matcher)
          end,
-         {description = "run or raise emacs", group = "launcher"}),
-   end
+         {description = "run or raise emacs", group = "launcher"})
+   ),
    
    awful.key({ modkey, "Control" }, "r", awesome.restart,
       {description = "reload awesome", group = "awesome"}),
