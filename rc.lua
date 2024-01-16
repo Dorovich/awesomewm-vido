@@ -57,10 +57,8 @@ local function getHostname()
 end
 local hostname = getHostname()
 
-if hostname == "Ness-net" then
-   is_laptop = true
-elseif hostname == "raspinet" then
-   is_raspi = true
+if hostname == "Ness-net" then is_laptop = true
+elseif hostname == "raspinet" then is_raspi = true
 else
    is_laptop = false
    is_raspi = false
