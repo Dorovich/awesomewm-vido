@@ -2,12 +2,7 @@
 local gears = require("gears")
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
-
--- Mouse
-root.buttons(gears.table.join(
-                awful.button({ }, 3, function () mymainmenu:toggle() end),
-                awful.button({ }, 4, awful.tag.viewnext),
-                awful.button({ }, 5, awful.tag.viewprev)))
+local naughty = require("naughty")
 
 -- Keys
 globalkeys = gears.table.join(
@@ -78,11 +73,11 @@ globalkeys = gears.table.join(
       function () awful.spawn("pcmanfm") end,
       {description = "open a file manager", group = "launcher"}),
 
-   do_if(not is_raspi, 
-      awful.key({ modkey }, "r",
-         function() awful.spawn(scriptmanager) end,
-         {description = "script selector", group = "launcher"})
-   ),
+   -- do_if(not is_raspi, 
+   --    awful.key({ modkey }, "r",
+   --       function() awful.spawn(scriptmanager) end,
+   --       {description = "script selector", group = "launcher"})
+   -- ),
    
    awful.key({ modkey }, "b",
       function ()
@@ -296,6 +291,44 @@ for i = 1, 9 do
                                     {description = "toggle focused client on tag #" .. i, group = "tag"})
    )
 end
+
+-- Scripts
+local script_map = {
+   r = "",
+   m = "music",
+   o = "sinks",
+   p = "pass",
+   s = "scrot",
+   k = "kill",
+   l = "steamapp",
+   i = "snippet load",
+}
+
+awful.keygrabber {
+   mask_modkeys = true,
+   stop_callback = function(self, stop_key, stop_mods, sequence)
+      if stop_key then
+         awful.spawn(scriptmanager.." "..script_map[stop_key])
+      end
+   end,
+   keypressed_callback  = function(self, mod, key, event)
+      self:stop()
+   end,
+   stop_key = gears.table.keys(script_map),
+   root_keybindings = {
+      {
+         { modkey }, "r",
+         function(self) return nil end,
+         {description="run a script", group="launcher"} --nose si esto va
+      },
+   },
+}
+
+-- Mouse
+root.buttons(gears.table.join(
+                awful.button({ }, 3, function () mymainmenu:toggle() end),
+                awful.button({ }, 4, awful.tag.viewnext),
+                awful.button({ }, 5, awful.tag.viewprev)))
 
 clientbuttons = gears.table.join(
    awful.button({ }, 1,
