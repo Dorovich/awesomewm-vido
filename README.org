@@ -1,7 +1,7 @@
 #+OPTIONS: \n:t num:nil timestamp:nil
 
 #+ATTR_ORG: :width 300
-[[file:media/bee.jpg]]
+[[file:media/bee2.jpg]]
 /in somniis, programmata/
 
 * Mi configuración para AwesomeWM
