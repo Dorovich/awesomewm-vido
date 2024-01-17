@@ -174,9 +174,10 @@ local taglist_buttons = gears.table.join(
 
 local tasklist_buttons = gears.table.join(
    awful.button({ }, 1, function (c)
-         if c == client.focus then
-            c.minimized = true
-         else
+         -- if c == client.focus then
+         --    c.minimized = true
+         -- else
+         if c ~= client.focus then
             c:emit_signal(
                "request::activate",
                "tasklist",
@@ -412,6 +413,7 @@ local function update_border_visibility_ontag(t)
    end
 end
 
+client.connect_signal("manage", function(c) update_border_visibility(c) end)
 client.connect_signal("property::floating", function(c) update_border_visibility(c) end)
 tag.connect_signal("property::selected", function (t) update_border_visibility_ontag(t) end)
 tag.connect_signal("property::layout", function(t) update_border_visibility_ontag(t) end)
