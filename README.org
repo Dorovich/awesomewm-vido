@@ -2,6 +2,7 @@
 
 #+ATTR_ORG: :width 300
 [[file:media/bee2.jpg]]
+
 /in somniis, programmata/
 
 * Mi configuración para AwesomeWM
