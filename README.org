@@ -1,7 +1,6 @@
 #+OPTIONS: \n:t num:nil timestamp:nil
 
-#+ATTR_ORG: :width 300
-[[file:media/bee2.jpg]]
+[[file:media/bee.jpg]]
 
 /in somniis, programmata/
 
