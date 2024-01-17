@@ -11,7 +11,11 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "Terminus 11" -- "mononoki Nerd Font Mono 12"
+if not is_raspi then
+   theme.font = "Terminus 11"
+else
+   theme.font = "monospace 10"
+end
 
 theme.bg_normal     = "#151515"
 theme.bg_focus      = "#323232"
@@ -26,11 +30,9 @@ theme.fg_minimize   = "#626262"
 
 theme.useless_gap   = dpi(2)
 theme.border_width  = dpi(2)
-theme.border_normal = "#151515"
+theme.border_normal = theme.bg_normal
 theme.border_focus  = "#baa67f"
 theme.border_marked = "#c678dd"
-
-squares_color = "#c678dd"
 
 theme.maximized_hide_border = true
 
@@ -61,7 +63,7 @@ theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
    taglist_square_size, theme.bg_normal
 )
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-   taglist_square_size, squares_color
+   taglist_square_size, theme.border_marked
 )
 
 -- Variables set for theming notifications:

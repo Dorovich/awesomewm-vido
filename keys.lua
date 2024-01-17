@@ -2,6 +2,7 @@
 local gears = require("gears")
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local menubar = require("menubar")
 local naughty = require("naughty")
 
 -- Keys
@@ -10,7 +11,7 @@ globalkeys = gears.table.join(
       hotkeys_popup.show_help,
       {description="show help", group="awesome"}),
    
-   awful.key({ modkey}, "Left",
+   awful.key({ modkey }, "Left",
       awful.tag.viewprev,
       {description = "view previous", group = "tag"}),
    
@@ -29,6 +30,10 @@ globalkeys = gears.table.join(
    awful.key({ modkey }, "k",
       function () awful.client.focus.byidx(-1) end,
       {description = "focus previous by index", group = "client"}),
+   
+   awful.key({ modkey }, "c",
+      function () awful.client.focus.byidx(1) end,
+      {description = "cycle by index", group = "client"}),
    
    awful.key({ modkey }, "w",
       function () mymainmenu:show() end,
@@ -302,6 +307,7 @@ local script_map = {
    k = "kill",
    l = "steamapp",
    i = "snippet load",
+   q = "quit",
 }
 
 awful.keygrabber {
@@ -311,7 +317,7 @@ awful.keygrabber {
          awful.spawn(scriptmanager.." "..script_map[stop_key])
       end
    end,
-   keypressed_callback  = function(self, mod, key, event)
+   keypressed_callback = function(self, mod, key, event)
       self:stop()
    end,
    stop_key = gears.table.keys(script_map),
@@ -326,9 +332,10 @@ awful.keygrabber {
 
 -- Mouse
 root.buttons(gears.table.join(
-                awful.button({ }, 3, function () mymainmenu:toggle() end),
-                awful.button({ }, 4, awful.tag.viewnext),
-                awful.button({ }, 5, awful.tag.viewprev)))
+                awful.button({ }, 3, function () mymainmenu:toggle() end)
+                -- awful.button({ }, 4, awful.tag.viewnext),
+                -- awful.button({ }, 5, awful.tag.viewprev)
+))
 
 clientbuttons = gears.table.join(
    awful.button({ }, 1,
