@@ -1,4 +1,18 @@
 #+OPTIONS: \n:t num:nil timestamp:nil
 
+#+ATTR_ORG: :width 300
+[[file:media/bee.jpg]]
+/in somniis, programmata/
+
 * Mi configuración para AwesomeWM
+
+#+ATTR_ORG: :width 1000
+[[file:media/mk-1.png]]
+
+** Funcionamiento
+#+BEGIN_QUOTE
+/Awesome es un administrador de ventanas de próxima generación altamente configurable para X. Es muy rápido, extensible y licenciado bajo GNU GPLv2./
+#+END_QUOTE
+~ [[https://awesomewm.org/][awesomewm.org]]
+
 <En progreso...>
