@@ -394,7 +394,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- No borders on tiled clients on max layout
 local function update_border_visibility(c)
-   if c.floating then
+   if c.floating or awful.layout.get(awful.screen.focused()).name ~= "max" then
       c.border_width = beautiful.border_width
    else
       c.border_width = 0
@@ -417,7 +417,6 @@ client.connect_signal("manage", function(c) update_border_visibility(c) end)
 client.connect_signal("property::floating", function(c) update_border_visibility(c) end)
 tag.connect_signal("property::selected", function (t) update_border_visibility_ontag(t) end)
 tag.connect_signal("property::layout", function(t) update_border_visibility_ontag(t) end)
-
 -- }}}
 
 -- Garbage collection

@@ -103,7 +103,9 @@ globalkeys = gears.table.join(
    
    awful.key({ modkey }, "d",
       -- function () awful.spawn("dmenu_run -h 16 -c -g 3 -l 10") end,
-      function () awful.spawn.easy_async("dmenu_run -h 16 -c -g 3 -l 10") end,
+      function ()
+         awful.spawn.easy_async("dmenu_run -h 16 -c -g 3 -l 10", function(_,_,_,_) return end)
+      end,
       {description = "run dmenu", group = "launcher"}),
 
    do_if(not is_raspi, 
@@ -315,7 +317,8 @@ awful.keygrabber {
    mask_modkeys = true,
    stop_callback = function(self, stop_key, stop_mods, sequence)
       if stop_key then
-         awful.spawn(scriptmanager.." "..script_map[stop_key])
+         -- awful.spawn(scriptmanager.." "..script_map[stop_key])
+         awful.spawn.easy_async(scriptmanager.." "..script_map[stop_key], function(_,_,_,_) return end)
       end
    end,
    keypressed_callback = function(self, mod, key, event)
