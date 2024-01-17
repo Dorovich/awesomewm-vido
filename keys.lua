@@ -102,7 +102,8 @@ globalkeys = gears.table.join(
       {description = "run or raise the browser", group = "launcher"}),
    
    awful.key({ modkey }, "d",
-      function () awful.spawn("dmenu_run -h 16 -c -g 3 -l 10") end,
+      -- function () awful.spawn("dmenu_run -h 16 -c -g 3 -l 10") end,
+      function () awful.spawn.easy_async("dmenu_run -h 16 -c -g 3 -l 10") end,
       {description = "run dmenu", group = "launcher"}),
 
    do_if(not is_raspi, 
