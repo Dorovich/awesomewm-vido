@@ -11,11 +11,7 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-if not is_raspi then
-   theme.font = "Terminus 11"
-else
-   theme.font = "monospace 10"
-end
+theme.font = "Terminus 11"
 
 local color = {
    black = "#151515",
@@ -120,7 +116,11 @@ theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/m
 theme.titlebar_maximized_button_focus_active = themes_path.."default/titlebar/maximized_focus_active.png"
 
 -- theme.wallpaper = themes_path.."default/background.png"
-theme.wallpaper = "/media/vido25/Almacenamiento/c o o l/mecano-cicada-edit.png"
+if not is_raspi then
+   theme.wallpaper = "/media/vido25/Almacenamiento/c o o l/mecano-cicada-edit.png"
+else 
+   theme.wallpaper = "~/Pictures/chilling.png"
+end
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
