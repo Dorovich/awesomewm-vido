@@ -28,13 +28,13 @@ local color = {
 }
 
 theme.bg_normal = color.black
-theme.bg_focus = color.blue
+theme.bg_focus = color.darkgray
 theme.bg_urgent = "#ff0000"
 theme.bg_minimize = theme.bg_normal
 theme.bg_systray = theme.bg_normal
 
 theme.fg_normal = color.white
-theme.fg_focus = theme.fg_normal
+theme.fg_focus = color.white
 theme.fg_urgent = theme.fg_normal
 theme.fg_minimize = color.gray
 
