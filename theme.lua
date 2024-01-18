@@ -17,65 +17,75 @@ else
    theme.font = "monospace 10"
 end
 
-theme.bg_normal = "#151515"
-theme.bg_focus = "#323232"
+local color = {
+   black = "#151515",
+   darkgray = "#323232",
+   gray = "#626262",
+   white = "#d1d1d1",
+   blue = "#535d6c",
+   magenta = "#c678dd",
+   gold = "#baa67f",
+}
+
+theme.bg_normal = color.black
+theme.bg_focus = color.blue
 theme.bg_urgent = "#ff0000"
 theme.bg_minimize = theme.bg_normal
 theme.bg_systray = theme.bg_normal
 
-theme.fg_normal = "#d1d1d1"
+theme.fg_normal = color.white
 theme.fg_focus = theme.fg_normal
 theme.fg_urgent = theme.fg_normal
-theme.fg_minimize = "#626262"
+theme.fg_minimize = color.gray
 
 theme.useless_gap = dpi(2)
 theme.border_width = dpi(2)
 theme.border_normal = theme.bg_normal
-theme.border_focus = "#baa67f"
-theme.border_marked = "#c678dd"
+theme.border_focus = color.gold
+theme.border_marked = color.magenta
 
 -- There are other variable sets
 -- overriding the default one when
 -- defined, the sets are:
 -- taglist_[bg|fg]_[focus|urgent|occupied|empty|volatile]
-theme.taglist_fg_focus = theme.bg_normal
-theme.taglist_fg_occupied = theme.fg_normal
-theme.taglist_fg_empty = theme.fg_minimize
-theme.taglist_bg_focus = theme.border_focus
 -- tasklist_[bg|fg]_[focus|urgent]
 -- titlebar_[bg|fg]_[normal|focus]
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
-theme.tooltip_font = theme.font
 -- mouse_finder_[color|timeout|animate_timeout|radius|factor]
 -- prompt_[fg|bg|fg_cursor|bg_cursor|font]
-theme.prompt_font = theme.font
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
+theme.taglist_fg_focus = color.white
+theme.taglist_fg_occupied = color.white
+theme.taglist_fg_empty = color.gray
+theme.taglist_bg_focus = color.blue
+theme.tooltip_font = theme.font
+theme.prompt_font = theme.font
 theme.hotkeys_font = theme.font
 theme.hotkeys_description_font = theme.font
-theme.hotkeys_modifiers_fg = theme.fg_minimize
-theme.hotkeys_border_color = theme.bg_normal
+theme.hotkeys_modifiers_fg = color.gray
+theme.hotkeys_border_color = color.black
 
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-   taglist_square_size, theme.bg_normal
+   taglist_square_size, color.gold --theme.bg_normal
 )
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-   taglist_square_size, theme.border_marked
+   taglist_square_size, color.gold --theme.border_marked
 )
 
 -- Variables set for theming notifications:
-theme.notification_font = theme.font
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
+theme.notification_font = theme.font
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path.."default/submenu.png"
 theme.menu_height = dpi(20)
-theme.menu_width  = dpi(150)
+theme.menu_width = dpi(150)
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -132,7 +142,7 @@ theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
-   theme.menu_height, theme.bg_focus, theme.fg_focus
+   theme.menu_height, theme.fg_normal, theme.bg_normal
 )
 
 -- Define the icon theme for application icons. If not set then the icons

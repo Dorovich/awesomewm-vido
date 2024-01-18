@@ -18,6 +18,9 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+local xresources = require("beautiful.xresources")
+local dpi = xresources.apply_dpi
+
 -- Load Debian menu entries
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
@@ -210,6 +213,21 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local sep = {
+   space = wibox.widget {
+      widget = wibox.widget.separator,
+      orientation = "vertical",
+      forced_width = dpi(8),
+      color = beautiful.bg_normal,
+   },
+   line = wibox.widget {
+      widget = wibox.widget.separator,
+      orientation = "vertical",
+      forced_width = dpi(10),
+      color = "#ffffff",
+   }
+}
+
 awful.screen.connect_for_each_screen(function(s)
       -- Wallpaper
       set_wallpaper(s)
@@ -242,7 +260,12 @@ awful.screen.connect_for_each_screen(function(s)
       }
 
       -- Create the wibox
-      s.mywibox = awful.wibar({ position = "top", screen = s })
+      s.mywibox = awful.wibar({
+            position = "top",
+            screen = s,
+            height = dpi(20),
+            -- border_width = dpi(2),
+      })
 
       -- Add widgets to the wibox
       s.mywibox:setup {
@@ -250,7 +273,9 @@ awful.screen.connect_for_each_screen(function(s)
          { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
+            sep.space,
             s.mytaglist,
+            sep.space,
             s.mypromptbox,
          },
          s.mytasklist, -- Middle widget
