@@ -9,19 +9,11 @@ local dpi = xresources.apply_dpi
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
+local color = require("colors")
+
 local theme = {}
 
 theme.font = "Terminus 11"
-
-local color = {
-   black = "#151515",
-   darkgray = "#323232",
-   gray = "#626262",
-   white = "#d1d1d1",
-   blue = "#535d6c",
-   magenta = "#c678dd",
-   gold = "#baa67f",
-}
 
 theme.bg_normal = color.black
 theme.bg_focus = color.darkgray
