@@ -78,12 +78,6 @@ globalkeys = gears.table.join(
       function () awful.spawn("pcmanfm") end,
       {description = "open a file manager", group = "launcher"}),
 
-   -- do_if(not is_raspi, 
-   --    awful.key({ modkey }, "r",
-   --       function() awful.spawn(scriptmanager) end,
-   --       {description = "script selector", group = "launcher"})
-   -- ),
-   
    awful.key({ modkey }, "b",
       function ()
          local browser, browser_class
@@ -102,7 +96,6 @@ globalkeys = gears.table.join(
       {description = "run or raise the browser", group = "launcher"}),
    
    awful.key({ modkey }, "d",
-      -- function () awful.spawn("dmenu_run -h 16 -c -g 3 -l 10") end,
       function ()
          awful.spawn.easy_async("dmenu_run -h 16 -c -g 3 -l 10", function(_,_,_,_) return end)
       end,
@@ -164,9 +157,7 @@ globalkeys = gears.table.join(
          local c = awful.client.restore()
          -- Focus restored client
          if c then
-            c:emit_signal(
-               "request::activate", "key.unminimize", {raise = true}
-            )
+            c:emit_signal("request::activate", "key.unminimize", {raise = true})
          end
       end,
       {description = "restore minimized", group = "client"}),
