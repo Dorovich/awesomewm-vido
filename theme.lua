@@ -13,7 +13,11 @@ local color = require("colors")
 
 local theme = {}
 
-theme.font = "Terminus 11"
+if not is_raspi then
+    theme.font = "Terminus 11"
+else
+    theme.font = "Terminus, Bold 12"
+end
 
 theme.bg_normal = color.black
 theme.bg_focus = color.darkgray
@@ -29,7 +33,13 @@ theme.fg_minimize = color.gray
 theme.useless_gap = dpi(2)
 theme.border_width = dpi(2)
 theme.border_normal = theme.bg_normal
-theme.border_focus = color.gold
+
+if not is_raspi then
+    theme.border_focus = color.gold
+else
+    theme.border_focus = color.blue
+end
+
 theme.border_marked = color.magenta
 
 -- There are other variable sets
@@ -111,7 +121,7 @@ theme.titlebar_maximized_button_focus_active = themes_path.."default/titlebar/ma
 if not is_raspi then
    theme.wallpaper = "/media/vido25/Almacenamiento/c o o l/mecano-cicada-edit.png"
 else 
-   theme.wallpaper = "~/Pictures/chilling.png"
+   theme.wallpaper = "~/Pictures/error.jpg"
 end
 
 -- You can use your own layout icons like this:

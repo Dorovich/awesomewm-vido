@@ -82,9 +82,7 @@ editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Script manager
-if not is_raspi then
-   scriptmanager = "scriptctl"
-end
+scriptmanager = "scriptctl"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.

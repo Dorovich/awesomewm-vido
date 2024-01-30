@@ -80,7 +80,13 @@ local myipwidget = wibox.widget{
    widget = wibox.container.background,
 }
 
-local interface = "enp3s0"
+local interface
+if not is_raspi then
+   interface = "enp3s0"
+else
+   interface = "wlan0"
+end
+
 local command = string.format("ip addr show %s | grep -oE '([[:digit:]]{1,3}.){3}[[:digit:]]{1,3}/' | cut -d'/' -f1", interface)
 
 gears.timer {
@@ -159,7 +165,8 @@ awful.screen.connect_for_each_screen(function(s)
          layout = wibox.layout.align.horizontal,
          { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            --mylauncher,
+            s.mylayoutbox, -- ponemos esto a la izquierda
             sep.space,
             s.mytaglist,
             sep.space,
@@ -172,7 +179,7 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
-            s.mylayoutbox,
+            --s.mylayoutbox,
          },
       }
 end)
