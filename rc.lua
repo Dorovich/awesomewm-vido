@@ -207,8 +207,9 @@ awful.rules.rules = {
    }, properties = { floating = true }},
 
    -- Add titlebars to normal clients and dialogs
-   { rule_any = {type = { "normal", "dialog" }
-                }, properties = { titlebars_enabled = false }
+   {
+      rule_any = { type = { "normal", "dialog" } },
+      properties = { titlebars_enabled = false }
    },
 
    -- Set Firefox to always map on the tag named "2" on screen 1.
@@ -216,8 +217,18 @@ awful.rules.rules = {
    --   properties = { screen = 1, tag = "2" } },
 
    {
-        rule_any = { class = { "URxvt" } },
-        properties = { size_hints_honor = false }
+      rule_any = { class = { "URxvt" } },
+      properties = { size_hints_honor = false }
+   },
+   {
+      rule_any = { class = {"fzf-selector"} },
+      properties = {
+         floating = true,
+         maximized = false,
+         raise = true,
+         titlebars_enabled = false,
+         ontop = true,
+      }
    }
 }
 -- }}}
