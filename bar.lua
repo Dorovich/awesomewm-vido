@@ -166,6 +166,7 @@ awful.screen.connect_for_each_screen(function(s)
          { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             --mylauncher,
+            sep.space,
             s.mylayoutbox, -- ponemos esto a la izquierda
             sep.space,
             s.mytaglist,
